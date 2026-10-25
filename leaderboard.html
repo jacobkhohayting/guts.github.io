@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script defer src="common.js"></script>
+  <script defer src="leaderboard.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="contest-name">Leaderboard</div>
+    <div class="timer-wrap">
+      <div class="timer" id="timer">--:--</div>
+      <div class="timer-label" id="timer-label"></div>
+    </div>
+    <div class="topbar-actions">
+      <select id="contest-select" class="select-compact" aria-label="Contest"></select>
+      <a class="btn btn-ghost" href="index.html">Contest page</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="view" id="view-loading">
+      <div class="card center"><p class="muted">Loading…</p></div>
+    </section>
+
+    <section class="view" id="view-setup" hidden>
+      <div class="card">
+        <h2>One more step</h2>
+        <p>Open <code>config.js</code> and paste your Apps Script web app URL into <code>API_URL</code>. See the README.</p>
+      </div>
+    </section>
+
+    <section class="view" id="view-error" hidden>
+      <div class="card center">
+        <h2>Something went wrong</h2>
+        <p class="error" id="error-msg"></p>
+        <button type="button" class="btn btn-primary" id="retry-btn">Try again</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-empty" hidden>
+      <div class="card center"><p class="muted">No contests have been set up yet.</p></div>
+    </section>
+
+    <section class="view" id="view-hidden" hidden>
+      <div class="card center">
+        <h2 id="hidden-title">Leaderboard</h2>
+        <p class="muted">The organizers have hidden the leaderboard for this contest.</p>
+      </div>
+    </section>
+
+    <section class="view" id="view-board" hidden>
+      <div class="round-header">
+        <div>
+          <h2 id="board-title">Leaderboard</h2>
+          <p class="muted" id="board-sub"></p>
+        </div>
+        <p class="muted small" id="board-updated"></p>
+      </div>
+      <div class="card">
+        <div class="table-wrap"><table id="board"></table></div>
+      </div>
+      <p class="muted small center">Only total scores are shown. Updates automatically.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" hidden></div>
+</body>
+</html>

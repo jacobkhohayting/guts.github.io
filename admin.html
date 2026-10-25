@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Organizer dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"></script>
+  <script src="config.js"></script>
+  <script defer src="common.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span id="contest-name">Contest</span> <span class="muted">· organizers</span></div>
+    <div class="timer-wrap">
+      <div class="timer" id="timer">--:--</div>
+      <div class="timer-label" id="timer-label"></div>
+    </div>
+    <div class="topbar-actions">
+      <select id="contest-select" class="select-compact" aria-label="Contest" hidden></select>
+      <label class="check" id="auto-refresh-wrap" hidden><input type="checkbox" id="auto-refresh" checked> Auto-refresh</label>
+      <button type="button" class="btn btn-ghost" id="refresh-btn" hidden>Refresh</button>
+      <button type="button" class="btn btn-ghost" id="logout-btn" hidden>Log out</button>
+    </div>
+  </header>
+
+  <main class="wide">
+    <section class="view" id="view-setup" hidden>
+      <div class="card">
+        <h2>One more step</h2>
+        <p>Open <code>config.js</code> and paste your Apps Script web app URL into <code>API_URL</code>. See the README.</p>
+      </div>
+    </section>
+
+    <section class="view" id="view-login">
+      <div class="card narrow">
+        <h2>Organizer login</h2>
+        <form id="login-form" novalidate>
+          <label for="password-input">Admin password</label>
+          <input id="password-input" type="password" required>
+          <p class="error" id="login-error" hidden></p>
+          <button type="submit" class="btn btn-primary" id="login-btn">Open dashboard</button>
+        </form>
+        <p class="muted" style="margin-top:12px">This is the <code>admin_password</code> value in the Config tab of your Google Sheet.</p>
+      </div>
+    </section>
+
+    <section class="view" id="view-dash" hidden>
+      <div class="stats" id="stats"></div>
+
+      <div class="card">
+        <h2>Scoreboard</h2>
+        <p class="muted">Ranked by score, then by earliest last submission. To override a grade, edit the <em>Correct N</em> cell (TRUE/FALSE) in the Submissions tab — this page recalculates on the next refresh. Participants only ever see the total score, on <a id="lb-link" href="leaderboard.html" target="_blank" rel="noopener">the public leaderboard</a>.</p>
+        <div class="table-wrap"><table id="scoreboard"></table></div>
+      </div>
+
+      <div class="card">
+        <h2>Submissions <span class="muted" id="sub-count"></span></h2>
+        <div class="table-wrap"><table id="submissions"></table></div>
+      </div>
+
+      <details class="card">
+        <summary>Problems and answer key (check that your LaTeX renders correctly)</summary>
+        <div id="problem-list"></div>
+      </details>
+
+      <details class="card">
+        <summary>All contests</summary>
+        <div class="table-wrap"><table id="contests-table"></table></div>
+      </details>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" hidden></div>
+</body>
+</html>
