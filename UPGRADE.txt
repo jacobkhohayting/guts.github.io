@@ -1,0 +1,15 @@
+Sign up / Log in / Password / live sync update
+==============================================
+
+Files in this folder replace the same-named files in your repo
+(jacobkhohayting/guts.github.io). Do NOT replace config.js - yours has the real API URL.
+
+1. Google Sheet -> Extensions -> Apps Script: replace ALL of Code.gs with the new Code.gs.
+2. In the editor pick `setup` in the function dropdown and click Run.
+   (Renames the "Access Code" column to "Password" and adds a "Drafts" tab. Existing teams keep their codes as passwords.)
+3. Deploy -> Manage deployments -> pencil icon -> Version: New version -> Deploy.
+   (The /exec URL stays the same.)
+4. Upload Code.gs (for reference), index.html, app.js, style.css, README.md to the GitHub repo and commit.
+5. Wait ~1 minute for GitHub Pages, then hard-refresh the site (Ctrl/Cmd+Shift+R).
+
+Sign up only appears for contests whose "Open registration" is TRUE in the Contests tab.
